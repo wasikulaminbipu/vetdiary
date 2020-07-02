@@ -1,55 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:vetdiary/widgets/item_card.dart';
+import 'package:vetdiary/widgets/navigation_drawer.dart';
+import 'package:vetdiary/calculator.dart';
 
 class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: SafeArea(
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text(
-                  "Vet Diary",
-                  style: Theme.of(context).primaryTextTheme.headline6,
-                ),
-                subtitle: Text("for the Veterinarians..."),
-              ),
-              ListTile(
-                leading: Icon(Icons.import_export),
-                title: Text("Import Data"),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.backup),
-                title: Text("Export Data"),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("Settings"),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.gamepad),
-                title: Text("About"),
-                onTap: () {},
-              ),
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: <Widget>[
-                    Text("Copyright"),
-                    Icon(Icons.copyright),
-                    Text("ATech Developers")
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      drawer: NavigationDrawer(),
       body: Container(
         child: SafeArea(
           child: Column(
@@ -175,7 +133,9 @@ class Dashboard extends StatelessWidget {
                           ItemCard(
                             title: "Calculator",
                             icon: Icons.view_comfy,
-                            onClick: () {},
+                            onClick: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Calculator()));
+                            },
                           ),
                         ],
                       ),
@@ -185,71 +145,6 @@ class Dashboard extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class ItemCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final Function onClick;
-
-  const ItemCard({
-    Key key,
-    @required this.icon,
-    @required this.title,
-    @required this.onClick,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: this.onClick,
-      child: Container(
-        margin: EdgeInsets.all(7.0),
-        height: MediaQuery.of(context).size.height * 1 / 5.5,
-        width: MediaQuery.of(context).size.width * 1 / 3.5,
-        decoration: BoxDecoration(
-            color: Colors.white,
-//                              border: Border.all(),
-            borderRadius: BorderRadius.circular(15.0),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 3,
-                  blurRadius: 6,
-                  offset: Offset(1, 3))
-            ]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            // Icon
-            Center(
-              child: Container(
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                    border: Border.all(),
-                    borderRadius: BorderRadius.circular(50.0)),
-                child: Icon(
-                  this.icon,
-                  size: 40.0,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            //Title
-            Container(
-              child: Text(
-                this.title,
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
         ),
       ),
     );
