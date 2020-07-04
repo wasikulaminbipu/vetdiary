@@ -11,6 +11,8 @@ class Pharmacology {
   List<NamedList> dose;
   List<String> prohibition;
   List<NamedList> sideEffects;
+  List<NamedList> interactions;
+  List<NamedList> indications;
 
   Pharmacology(
       this.id,
@@ -20,10 +22,13 @@ class Pharmacology {
       this.pregnencyCategory,
       this.dose,
       this.prohibition,
-      this.sideEffects);
+      this.sideEffects,
+      this.indications,
+      this.interactions
+      );
 
   @override
   String toString() {
-    return "id: $id , generic name: $genericName , mode of action: $modeOfAction , theraputic class: $theraputicClass , pregnency category: $pregnencyCategory , dose: $dose , prohibition: $prohibition , side effects: $sideEffects";
+    return "id: $id , generic name: $genericName , mode of action: $modeOfAction , theraputic class: $theraputicClass , pregnency category: $pregnencyCategory , dose: $dose , prohibition: $prohibition , side effects: $sideEffects , interactions: $interactions , indications: $indications";
   }
 }
