@@ -25,6 +25,7 @@ class _CustomInputRowState extends State<CustomInputRow> {
 
   @override
   Widget build(BuildContext context) {
+    this.dropdownItem = this.dropdownItem ?? this.widget.options[0];
     return Container(
       padding: EdgeInsets.all(10.0),
       child: Row(
