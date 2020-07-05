@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:vetdiary/widgets/custom_input_row.dart';
 
-class GestatationCalculator extends StatelessWidget {
+class GestatationCalculator extends StatefulWidget {
   const GestatationCalculator({
     Key key,
   }) : super(key: key);
+
+  @override
+  _GestatationCalculatorState createState() => _GestatationCalculatorState();
+}
+
+class _GestatationCalculatorState extends State<GestatationCalculator> {
+  DateTime inseminationDate;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +19,7 @@ class GestatationCalculator extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: ListView(
         children: <Widget>[
-          //Calculator Display
+          //Calculator Display Board
           Container(
             padding: EdgeInsets.all(10.0),
             alignment: Alignment.center,
@@ -20,24 +27,19 @@ class GestatationCalculator extends StatelessWidget {
               color: Colors.white,
               border: Border.all(color: Colors.grey, width: 2.0),
             ),
+            //Row of Display Board to show multiple widget in same line
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                //Show Date Remaining
                 ResultView(
-                  result: 123.2.toString(),
-                  unit: "mg/L",
+                  result: 123.toString(),
+                  unit: "days remaining",
                 ),
-                Text(
-                  "X",
-                  style: Theme.of(context).primaryTextTheme.headline4,
-                ),
+                //Show Probable Parturition Date
                 ResultView(
-                  result: 2.toString(),
-                  unit: "Times",
-                ),
-                ResultView(
-                  result: "Daily",
-                  unit: "",
+                  result: this.inseminationDate.day.toString()+"/"+this.inseminationDate.month.toString()+"/"+this.inseminationDate.year.toString(),
+                  unit: "Probable Parturation Date",
                 ),
               ],
             ),
@@ -57,10 +59,12 @@ class GestatationCalculator extends StatelessWidget {
                   style: Theme.of(context).primaryTextTheme.headline4,
                 ),
                 Text(
-                  "12/12/2020",
+                  this.inseminationDate.day.toString()+"/"+this.inseminationDate.month.toString()+"/"+this.inseminationDate.year.toString(),
                   style: Theme.of(context).primaryTextTheme.headline4,
                 ),
-                SizedBox(width: 5.0,),
+                SizedBox(
+                  width: 5.0,
+                ),
                 Container(
                   height: 50.0,
                   child: RaisedButton(
@@ -76,7 +80,15 @@ class GestatationCalculator extends StatelessWidget {
           RaisedButton(
             color: Theme.of(context).buttonColor,
             child: Text("Calculate"),
-            onPressed: () {},
+            onPressed: () {
+              showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(3000))
+                  .then((value) => this.inseminationDate = value);
+                  setState((){});
+            },
           )
         ],
       ),
