@@ -1,18 +1,19 @@
 import 'dart:core';
 
+import 'package:equatable/equatable.dart';
 import 'package:vetdiary/model/utility.dart';
 
-class Pharmacology {
-  int id;
-  String genericName;
-  String modeOfAction;
-  String theraputicClass;
-  String pregnencyCategory;
-  List<NamedList> dose;
-  List<String> prohibition;
-  List<NamedList> sideEffects;
-  List<NamedList> interactions;
-  List<NamedList> indications;
+class Pharmacology extends Equatable{
+  final int id;
+  final String genericName;
+  final String modeOfAction;
+  final String theraputicClass;
+  final String pregnencyCategory;
+  final List<NamedList> dose;
+  final List<String> prohibition;
+  final List<NamedList> sideEffects;
+  final List<NamedList> interactions;
+  final List<NamedList> indications;
 
   Pharmacology(
       this.id,
@@ -31,4 +32,8 @@ class Pharmacology {
   String toString() {
     return "id: $id , generic name: $genericName , mode of action: $modeOfAction , theraputic class: $theraputicClass , pregnency category: $pregnencyCategory , dose: $dose , prohibition: $prohibition , side effects: $sideEffects , interactions: $interactions , indications: $indications";
   }
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [id, genericName, modeOfAction, theraputicClass, pregnencyCategory, dose, prohibition, sideEffects, indications, interactions];
 }

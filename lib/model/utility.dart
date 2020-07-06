@@ -1,8 +1,10 @@
 import 'dart:core';
 
-class NamedList {
-  String name;
-  String details;
+import 'package:equatable/equatable.dart';
+
+class NamedList extends Equatable {
+  final String name;
+  final String details;
 
   NamedList(this.name, this.details);
 
@@ -10,4 +12,8 @@ class NamedList {
   String toString() {
     return "name: $name , details: $details";
   }
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [name, details];
 }
