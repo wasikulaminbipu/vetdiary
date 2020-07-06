@@ -24,8 +24,17 @@ class _CustomInputRowState extends State<CustomInputRow> {
   String dropdownItem;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    if (this.widget.options != null &&  this.widget.options.isNotEmpty && this.dropdownItem == null) {
+      this.dropdownItem =  this.widget.options[0];
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    this.dropdownItem = this.dropdownItem ?? this.widget.options[0];
+    
     return Container(
       padding: EdgeInsets.all(10.0),
       child: Row(

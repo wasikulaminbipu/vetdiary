@@ -4,8 +4,8 @@ import 'package:vetdiary/widgets/result_view.dart';
 
 
 
-class FluidRateCalculator extends StatelessWidget {
-  const FluidRateCalculator({
+class BodySurfaceAreaCalculator extends StatelessWidget {
+  const BodySurfaceAreaCalculator({
     Key key,
   }) : super(key: key);
 
@@ -23,42 +23,39 @@ class FluidRateCalculator extends StatelessWidget {
               color: Colors.white,
               border: Border.all(color: Colors.grey, width: 2.0),
             ),
-            child: Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(alignment: Alignment.topRight, child: Icon(Icons.toll)),
+                
                 ResultView(
                   result: 123.2.toString(),
-                  unit: "drops/min",
+                  unit: "mg/L",
+                ),
+                Text(
+                  "X",
+                  style:
+                      Theme.of(context).primaryTextTheme.headline4,
+                ),
+                ResultView(
+                  result: 2.toString(),
+                  unit: "Times",
+                ),
+                ResultView(
+                  result: "Daily",
+                  unit: "",
                 ),
               ],
             ),
           ),
           CustomInputRow(
-            // lookup: () {},
-            title: "Fluid Rate: ",
-            options: ["mg/kg/day"],
+            title: "BSA Variable: ",
+            // options: ["mg/L", "DDD"],
             onChanged: (value) {},
           ),
           CustomInputRow(
-            title: "Dehydration: ",
-            options: ["%"],
-            onChanged: (value) {},
-          ),
-          CustomInputRow(
-            title: "Time: ",
-            options: ["minutes"],
-            onChanged: (value) {},
-          ),
-          CustomInputRow(
+            lookup: () {},
             title: "Patient's Weight: ",
-            options: ["kg","pound"],
-            onChanged: (value) {},
-          ),
-          CustomInputRow(
-            title: "Drops: ",
-            options: ["drops/ml"],
+            options: ["mg/L", "DDD"],
             onChanged: (value) {},
           ),
           RaisedButton(
@@ -71,3 +68,4 @@ class FluidRateCalculator extends StatelessWidget {
     );
   }
 }
+

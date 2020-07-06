@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vetdiary/widgets/age_calculator.dart';
+import 'package:vetdiary/widgets/body_surface_area_calculator.dart';
 import 'package:vetdiary/widgets/custom_input_row.dart';
 import 'package:vetdiary/widgets/dosage_calculator.dart';
 import 'package:vetdiary/widgets/fluid_rate_calculator.dart';
@@ -67,7 +68,7 @@ class Calculator extends StatelessWidget {
                 GestatationCalculator(),
                 TransfusionCalculator(),
                 AgeCalculator(),
-                Container(),
+                BodySurfaceAreaCalculator(),
                 Container(),
               ],
             ),
