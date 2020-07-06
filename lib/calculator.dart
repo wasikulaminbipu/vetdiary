@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:vetdiary/widgets/age_calculator.dart';
 import 'package:vetdiary/widgets/custom_input_row.dart';
 import 'package:vetdiary/widgets/dosage_calculator.dart';
 import 'package:vetdiary/widgets/fluid_rate_calculator.dart';
 import 'package:vetdiary/widgets/gestation_calculator.dart';
 import 'package:vetdiary/widgets/navigation_drawer.dart';
+import 'package:vetdiary/widgets/transfusion_calculator.dart';
 
 class Calculator extends StatelessWidget {
   @override
@@ -63,8 +65,8 @@ class Calculator extends StatelessWidget {
                 DosageCalculator(),
                 FluidRateCalculator(),
                 GestatationCalculator(),
-                Container(),
-                Container(),
+                TransfusionCalculator(),
+                AgeCalculator(),
                 Container(),
                 Container(),
               ],

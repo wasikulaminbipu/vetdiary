@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vetdiary/widgets/custom_input_row.dart';
 
-class GestatationCalculator extends StatefulWidget {
-  const GestatationCalculator({
+class AgeCalculator extends StatefulWidget {
+  const AgeCalculator({
     Key key,
   }) : super(key: key);
 
@@ -10,7 +10,7 @@ class GestatationCalculator extends StatefulWidget {
   _GestatationCalculatorState createState() => _GestatationCalculatorState();
 }
 
-class _GestatationCalculatorState extends State<GestatationCalculator> {
+class _GestatationCalculatorState extends State<AgeCalculator> {
   DateTime inseminationDate;
 
   @override
@@ -34,28 +34,20 @@ class _GestatationCalculatorState extends State<GestatationCalculator> {
                 //Show Date Remaining
                 ResultView(
                   result: 123.toString(),
-                  unit: "days remaining",
-                ),
-                //Show Probable Parturition Date
-                ResultView(
-                  result: this.inseminationDate == null ? "" : this.inseminationDate.day.toString()+"/"+this.inseminationDate.month.toString()+"/"+this.inseminationDate.year.toString(),
-                  unit: "Probable Parturation Date",
+                  unit: "days",
                 ),
               ],
             ),
           ),
-          CustomInputRow(
-            lookup: () {},
-            title: "Gestation Period: ",
-            options: ["days", "year"],
-            onChanged: (value) {},
+          SizedBox(
+            height: 10.0,
           ),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Insemination Date: ",
+                  "From Date: ",
                   style: Theme.of(context).primaryTextTheme.headline4,
                 ),
                 Text(
@@ -77,6 +69,38 @@ class _GestatationCalculatorState extends State<GestatationCalculator> {
               ],
             ),
           ),
+          SizedBox(
+            height: 10.0,
+          ),
+          
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  "To Date: ",
+                  style: Theme.of(context).primaryTextTheme.headline4,
+                ),
+                Text(
+                  this.inseminationDate == null ? "" : this.inseminationDate.day.toString()+"/"+this.inseminationDate.month.toString()+"/"+this.inseminationDate.year.toString(),
+                  style: Theme.of(context).primaryTextTheme.headline4,
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Container(
+                  height: 50.0,
+                  child: RaisedButton(
+                    elevation: 5.0,
+                    color: Theme.of(context).buttonColor,
+                    child: Icon(Icons.import_export),
+                    onPressed: () {},
+                  ),
+                )
+              ],
+            ),
+          ),
+         
           RaisedButton(
             color: Theme.of(context).buttonColor,
             child: Text("Calculate"),
