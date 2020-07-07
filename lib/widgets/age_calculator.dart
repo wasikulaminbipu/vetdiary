@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vetdiary/bloc/calculator_bloc/calculator_bloc.dart';
+import 'package:vetdiary/widgets/custom_datetime.dart';
 import 'package:vetdiary/widgets/custom_input_row.dart';
 import 'package:vetdiary/widgets/result_view.dart';
 
@@ -12,111 +15,74 @@ class AgeCalculator extends StatefulWidget {
 }
 
 class _GestatationCalculatorState extends State<AgeCalculator> {
-  DateTime inseminationDate;
+  DateTime fromDate;
+  DateTime toDate;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      child: ListView(
-        children: <Widget>[
-          //Calculator Display Board
-          Container(
-            padding: EdgeInsets.all(10.0),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey, width: 2.0),
-            ),
-            //Row of Display Board to show multiple widget in same line
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                //Show Date Remaining
-                ResultView(
-                  result: 123.toString(),
-                  unit: "days",
+    return BlocBuilder<CalculatorBloc, CalculatorState>(
+        builder: (context, state) {
+          final Duration result = (state as AgeCalculatorResultState).result;
+
+          return Builder(
+            builder: (context) {
+              return Container(
+                padding: EdgeInsets.all(10.0),
+                child: ListView(
+                  children: <Widget>[
+                    //Calculator Display Board
+                    Container(
+                      padding: EdgeInsets.all(10.0),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey, width: 2.0),
+                      ),
+                      //Row of Display Board to show multiple widget in same line
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          //Show Date Remaining
+                          ResultView(
+                            result: result.inDays.toString(),
+                            unit: "days",
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    CustomDateField(
+                      title: "From Date: ",
+                      onClick: (DateTime date) {
+                        this.fromDate = date;
+                      },
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+
+                    CustomDateField(
+                      title: "To Date: ",
+                      onClick: (DateTime date) {
+                        this.toDate = date;
+                      },
+                    ),
+
+                    RaisedButton(
+                      color: Theme.of(context).buttonColor,
+                      child: Text("Calculate"),
+                      onPressed: () {
+                        BlocProvider.of<CalculatorBloc>(context)
+                            .add(AgeCalculatorDataAdded(fromDate, toDate));
+                      },
+                    )
+                  ],
                 ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "From Date: ",
-                  style: Theme.of(context).primaryTextTheme.headline4,
-                ),
-                Text(
-                  this.inseminationDate == null ? "" : this.inseminationDate.day.toString()+"/"+this.inseminationDate.month.toString()+"/"+this.inseminationDate.year.toString(),
-                  style: Theme.of(context).primaryTextTheme.headline4,
-                ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                Container(
-                  height: 50.0,
-                  child: RaisedButton(
-                    elevation: 5.0,
-                    color: Theme.of(context).buttonColor,
-                    child: Icon(Icons.import_export),
-                    onPressed: () {},
-                  ),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "To Date: ",
-                  style: Theme.of(context).primaryTextTheme.headline4,
-                ),
-                Text(
-                  this.inseminationDate == null ? "" : this.inseminationDate.day.toString()+"/"+this.inseminationDate.month.toString()+"/"+this.inseminationDate.year.toString(),
-                  style: Theme.of(context).primaryTextTheme.headline4,
-                ),
-                SizedBox(
-                  width: 5.0,
-                ),
-                Container(
-                  height: 50.0,
-                  child: RaisedButton(
-                    elevation: 5.0,
-                    color: Theme.of(context).buttonColor,
-                    child: Icon(Icons.import_export),
-                    onPressed: () {},
-                  ),
-                )
-              ],
-            ),
-          ),
-         
-          RaisedButton(
-            color: Theme.of(context).buttonColor,
-            child: Text("Calculate"),
-            onPressed: () {
-              showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2020),
-                      lastDate: DateTime(3000))
-                  .then((value) => this.inseminationDate = value);
-                  setState((){});
-            },
-          )
-        ],
-      ),
-    );
+              );
+            }
+          );
+        });
   }
 }
