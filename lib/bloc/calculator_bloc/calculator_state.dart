@@ -1,9 +1,9 @@
 part of 'calculator_bloc.dart';
 
 @immutable
-abstract class CalculatorState extends Equatable{}
+abstract class CalculatorState extends Equatable {}
 
-abstract class AgeCalculatorResultState extends CalculatorState{
+abstract class AgeCalculatorResultState extends CalculatorState {
   final Duration result = Duration(days: 0);
 }
 
@@ -37,9 +37,9 @@ class AgeCalculatorStateLoaded extends AgeCalculatorResultState {
   List<Object> get props => [result];
 }
 
-class AgeCalaculatorStateFailed extends AgeCalculatorResultState{
+class AgeCalaculatorStateFailed extends AgeCalculatorResultState {
   @override
   // TODO: implement props
   List<Object> get props => [];
-
 }
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vetdiary/bloc/calculator_bloc/calculator_bloc.dart';
+import 'package:vetdiary/bloc/dose_calculator_bloc/dose_calculator_bloc.dart';
 import 'package:vetdiary/widgets/age_calculator.dart';
 import 'package:vetdiary/widgets/body_surface_area_calculator.dart';
 import 'package:vetdiary/widgets/custom_input_row.dart';
@@ -13,8 +14,11 @@ import 'package:vetdiary/widgets/transfusion_calculator.dart';
 class Calculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CalculatorBloc>(
-      create: (context) => CalculatorBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CalculatorBloc(),),
+        BlocProvider(create: (context) => DoseCalculatorBloc(),),
+      ],
       child: DefaultTabController(
         length: 7,
         child: Scaffold(
