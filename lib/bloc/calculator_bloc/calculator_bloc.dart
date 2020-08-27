@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:vetdiary/model/calculator_result.dart';
 
 part 'calculator_event.dart';
 part 'calculator_state.dart';
 
 class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
-  CalculatorBloc();
+  
+  CalculatorBloc(CalculatorState initialState) : super(initialState);
+
 
   @override
   Stream<CalculatorState> mapEventToState(
@@ -20,10 +21,6 @@ class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
       yield* _mapAgeCalculatorLoadedState(event);
     }
   }
-
-  @override
-  // TODO: implement initialState
-  CalculatorState get initialState => AgeCalculatorInitial(Duration(days: 0));
 
   Stream<CalculatorState> _mapAgeCalculatorLoadedState(
       AgeCalculatorDataAdded event) async* {

@@ -1,7 +1,7 @@
 part of 'dose_calculator_bloc.dart';
 
 @immutable
-abstract class DoseCalculatorState {}
+abstract class DoseCalculatorState extends Equatable{}
 
 // class DoseCalculatorInitial extends DoseCalculatorState {}
 

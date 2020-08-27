@@ -3,19 +3,28 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:vetdiary/model/utility.dart';
 
-class WeightConverter {
+class VolumeConverter {
   //define all the standard Weight Formats and set value to step to KG by multiplication
   final List<VariableWithValue> _standardWeightFormats = [
-    VariableWithValue(variable: "mcg", value: pow(10, -9)),
-    VariableWithValue(variable: "mg", value: pow(10, -6)),
-    VariableWithValue(variable: "g", value: pow(10, -3)),
-    VariableWithValue(variable: "kg", value: 1),
-    VariableWithValue(variable: "tonnes", value: pow(10, 3)),
-    VariableWithValue(variable: "impTon", value: 1016.05),
-    VariableWithValue(variable: "usTon", value: 907.185),
-    VariableWithValue(variable: "stone", value: 6.35029),
-    VariableWithValue(variable: "lb", value: 0.453592),
-    VariableWithValue(variable: "oz", value: 0.0283495),
+    VariableWithValue(variable: "usLiquidGallon", value: 3.78541),
+    VariableWithValue(variable: "usLiquidQuart", value: 0.946353),
+    VariableWithValue(variable: "usLiquidPint", value: 0.473176),
+    VariableWithValue(variable: "usLegalCup", value: 0.24),
+    VariableWithValue(variable: "usFluidOunces", value: 0.0295735),
+    VariableWithValue(variable: "usTablespoon", value: 0.0147868),
+    VariableWithValue(variable: "usTeaspoon", value: 0.00492892),
+    VariableWithValue(variable: "milliliters", value: pow(10, -3)),
+    VariableWithValue(variable: "litres", value: 1),
+    VariableWithValue(variable: "imperialGallons", value: 4.54609),
+    VariableWithValue(variable: "imperialQuart", value: 1.13652),
+    VariableWithValue(variable: "imperialPint", value: 0.568261),
+    VariableWithValue(variable: "imperialCup", value: 0.284131),
+    VariableWithValue(variable: "imperialFluidOunces", value: 0.0284131),
+    VariableWithValue(variable: "imperialTablespoon", value: 0.0177582),
+    VariableWithValue(variable: "imperialTeaspoon", value: 0.00591939),
+    VariableWithValue(variable: "cubicMetres", value: pow(10,3)),
+    VariableWithValue(variable: "cubicFoot", value: 28.3168),
+    VariableWithValue(variable: "cubicInch", value: 0.0163871),
   ];
 
   double _valueInKG = 0;
@@ -51,3 +60,5 @@ class WeightConverter {
     return _value;
   }
 }
+
+

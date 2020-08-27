@@ -4,20 +4,30 @@ import 'package:vetdiary/bloc/calculator_bloc/calculator_bloc.dart';
 import 'package:vetdiary/bloc/dose_calculator_bloc/dose_calculator_bloc.dart';
 import 'package:vetdiary/widgets/age_calculator.dart';
 import 'package:vetdiary/widgets/body_surface_area_calculator.dart';
-import 'package:vetdiary/widgets/custom_input_row.dart';
 import 'package:vetdiary/widgets/dosage_calculator.dart';
 import 'package:vetdiary/widgets/fluid_rate_calculator.dart';
 import 'package:vetdiary/widgets/gestation_calculator.dart';
 import 'package:vetdiary/widgets/navigation_drawer.dart';
 import 'package:vetdiary/widgets/transfusion_calculator.dart';
 
+import 'model/calculator_result.dart';
+
 class Calculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CalculatorBloc(),),
-        BlocProvider(create: (context) => DoseCalculatorBloc(),),
+        BlocProvider(
+          create: (context) =>
+              CalculatorBloc(AgeCalculatorInitial(Duration(days: 0))),
+        ),
+        BlocProvider(
+          create: (context) => DoseCalculatorBloc(DoseCalculatorStateLoaded(
+              result: DoseCalculatorResult(
+            amount: UnitWithValue(value: "0", unit: ""),
+            frequency: UnitWithValue(value: "0", unit: ""),
+          ))),
+        ),
       ],
       child: DefaultTabController(
         length: 7,
