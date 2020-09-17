@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:equatable/equatable.dart';
 import 'package:vetdiary/model/utility.dart';
 
-class DrugList extends Equatable{
+class DrugList extends Equatable {
   final int id;
   final String tradeName;
   final String genericName;
@@ -15,12 +15,26 @@ class DrugList extends Equatable{
   DrugList(this.id, this.tradeName, this.genericName, this.concentration,
       this.type, this.price, this.dosage);
 
-  @override
-  String toString() {
-    return "id: $id , tradename: $tradeName , generic name: $genericName , concentration: $concentration , type: $type , price: $price , dosage: dosage";
+  DrugList copyWith(
+      {String tradeName,
+      String concentration,
+      String type,
+      int price,
+      List<NamedList> dosage}) {
+    return DrugList(
+        this.id,
+        tradeName ?? this.tradeName,
+        genericName ?? this.genericName,
+        concentration ?? this.concentration,
+        type ?? this.type,
+        price ?? this.price,
+        dosage ?? this.dosage);
   }
 
   @override
-  // TODO: implement props
-  List<Object> get props => [id, tradeName, genericName, concentration, type, price, dosage];
+  bool get stringify => true;
+
+  @override
+  List<Object> get props =>
+      [id, tradeName, genericName, concentration, type, price, dosage];
 }

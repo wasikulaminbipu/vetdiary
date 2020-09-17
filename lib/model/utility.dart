@@ -9,19 +9,31 @@ class NamedList extends Equatable {
 
   NamedList(this.name, this.details);
 
-  @override
-  String toString() {
-    return "name: $name , details: $details";
+  NamedList copyWith({String name, String details}) {
+    return NamedList(name ?? this.name, details ?? this.details);
   }
 
   @override
-  // TODO: implement props
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [name, details];
 }
 
-class VariableWithValue {
+class VariableWithValue extends Equatable {
   final String variable;
   final double value;
 
   VariableWithValue({@required this.variable, @required this.value});
+
+  VariableWithValue copyWith({String variable, double value}) {
+    return VariableWithValue(
+        variable: variable ?? this.variable, value: value ?? this.value);
+  }
+
+  @override
+  bool get stringify => true;
+
+  @override
+  List<Object> get props => [this.value, this.variable];
 }

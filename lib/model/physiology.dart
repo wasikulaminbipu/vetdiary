@@ -10,12 +10,13 @@ class Physiology extends Equatable {
 
   Physiology(this.id, this.animal, this.data);
 
-  @override
-  String toString() {
-    return "id: $id , animal: $animal , data: $data";
+  Physiology copyWith({String animal, List<DataBuilder> data}) {
+    return Physiology(this.id, animal ?? this.animal, data ?? this.data);
   }
 
   @override
-  // TODO: implement props
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [id, animal, data];
 }

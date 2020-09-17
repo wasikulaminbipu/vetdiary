@@ -3,20 +3,20 @@ import 'dart:core';
 import 'package:equatable/equatable.dart';
 import 'package:vetdiary/model/utility.dart';
 
-class DataBuilder extends Equatable{
+abstract class DataBuilder extends Equatable {
   final int id;
 
   DataBuilder(this.id);
 
-  @override
-  String toString() {
-    // TODO: implement toString
-    return "id: id";
-  }
+  copyWith() {}
 
   @override
-  // TODO: implement props
-  List<Object> get props => [id];
+  bool get stringify => true;
+
+  @override
+  List<Object> get props => [
+        id,
+      ];
 }
 
 class TableBuilder extends DataBuilder {
@@ -26,26 +26,31 @@ class TableBuilder extends DataBuilder {
   TableBuilder(this.columnTitle, this.columnData) : super(0);
 
   @override
-  String toString() {
-    return "column titles: $columnData , column datas: $columnData";
+  TableBuilder copyWith({List<String> columnTitle, List<String> columnData}) {
+    return TableBuilder(
+        columnTitle ?? this.columnTitle, columnData ?? this.columnData);
   }
 
   @override
-  // TODO: implement props
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [id, columnTitle, columnData];
 }
 
 class ListBuilder extends DataBuilder {
-  List<NamedList> data;
+  final List<NamedList> data;
 
   ListBuilder(this.data) : super(0);
 
   @override
-  String toString() {
-    return "data: $data";
+  ListBuilder copyWith({List<NamedList> data}) {
+    return ListBuilder(data ?? this.data);
   }
 
   @override
-  // TODO: implement props
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [id, data];
 }

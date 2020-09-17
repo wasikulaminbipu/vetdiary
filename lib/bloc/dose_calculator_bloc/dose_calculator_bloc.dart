@@ -23,6 +23,7 @@ class DoseCalculatorBloc
     if (event is DoseCalculatorDataAdded) {
       yield* _mapDoseCalculatorLoadState(event);
     }
+    
   }
 
   @override
@@ -36,6 +37,8 @@ class DoseCalculatorBloc
   //===========Dose Calculator Area=======================
   Stream<DoseCalculatorState> _mapDoseCalculatorLoadState(
       DoseCalculatorDataAdded event) async* {
+        // print(event.data.dosage.unit.toString());
+        print(event.data.isEmpty);
     yield DoseCalculatorStateLoaded(
         result: DosageConverter(event.data).getDose);
   }

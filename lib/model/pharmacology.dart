@@ -3,7 +3,7 @@ import 'dart:core';
 import 'package:equatable/equatable.dart';
 import 'package:vetdiary/model/utility.dart';
 
-class Pharmacology extends Equatable{
+class Pharmacology extends Equatable {
   final int id;
   final String genericName;
   final String modeOfAction;
@@ -25,15 +25,45 @@ class Pharmacology extends Equatable{
       this.prohibition,
       this.sideEffects,
       this.indications,
-      this.interactions
-      );
+      this.interactions);
 
-  @override
-  String toString() {
-    return "id: $id , generic name: $genericName , mode of action: $modeOfAction , theraputic class: $theraputicClass , pregnency category: $pregnencyCategory , dose: $dose , prohibition: $prohibition , side effects: $sideEffects , interactions: $interactions , indications: $indications";
+  Pharmacology copyWith(
+      {String genericName,
+      String modeOfAction,
+      String theraputicClass,
+      String pregnencyCategory,
+      List<NamedList> dose,
+      List<String> prohibition,
+      List<NamedList> sideEffects,
+      List<NamedList> indications,
+      List<NamedList> interactions}) {
+    return Pharmacology(
+        this.id,
+        genericName ?? this.genericName,
+        modeOfAction ?? this.modeOfAction,
+        theraputicClass ?? this.theraputicClass,
+        pregnencyCategory ?? this.pregnencyCategory,
+        dose ?? this.dose,
+        prohibition ?? this.prohibition,
+        sideEffects ?? this.sideEffects,
+        indications ?? this.indications,
+        interactions ?? this.interactions);
   }
 
   @override
-  // TODO: implement props
-  List<Object> get props => [id, genericName, modeOfAction, theraputicClass, pregnencyCategory, dose, prohibition, sideEffects, indications, interactions];
+  bool get stringify => true;
+
+  @override
+  List<Object> get props => [
+        id,
+        genericName,
+        modeOfAction,
+        theraputicClass,
+        pregnencyCategory,
+        dose,
+        prohibition,
+        sideEffects,
+        indications,
+        interactions
+      ];
 }

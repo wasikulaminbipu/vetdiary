@@ -1,96 +1,111 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vetdiary/bloc/calculator_bloc/calculator_bloc.dart';
-import 'package:vetdiary/bloc/dose_calculator_bloc/dose_calculator_bloc.dart';
-import 'package:vetdiary/model/calculator_result.dart';
-import 'package:vetdiary/widgets/custom_input_row.dart';
-import 'package:vetdiary/widgets/result_view.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:vetdiary/bloc/dose_calculator_bloc/dose_calculator_bloc.dart';
+// import 'package:vetdiary/model/calculator_result.dart';
+// import 'package:vetdiary/widgets/custom_input_row.dart';
+// import 'package:vetdiary/widgets/result_view.dart';
 
-class DosageCalculator extends StatelessWidget {
-  //Define DosageCalculatorData to set data from the form
-  final DoseCalculatorData input = DoseCalculatorData();
+// class DosageCalculator extends StatelessWidget {
+//   //Define DosageCalculatorData to set data from the form
+//   final DoseCalculatorData input = DoseCalculatorData(
+//     dosage: UnitWithValue(value: "", unit: ""),
+//     frequency: UnitWithValue(value: "", unit: ""),
+//     weight: UnitWithValue(value: "", unit: ""),
+//   );
 
-  DosageCalculator({
-    Key key,
-  }) : super(key: key);
+//   DosageCalculator({
+//     Key key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<DoseCalculatorBloc, DoseCalculatorState>(
-        builder: (context, state) {
-      final result = (state as DoseCalculatorStateLoaded).result;
+//   @override
+//   Widget build(BuildContext context) {
 
-      return Container(
-        padding: EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
-            //Calculator Display
-            Container(
-              padding: EdgeInsets.all(10.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey, width: 2.0),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ResultView(
-                    result: result.amount.value.toString(),
-                    unit: result.amount.unit.toString(),
-                  ),
-                  Text(
-                    "X",
-                    style: Theme.of(context).primaryTextTheme.headline4,
-                  ),
-                  ResultView(
-                    result: result.frequency.value.toString(),
-                    unit: result.frequency.unit.toString(),
-                  ),
-                  ResultView(
-                    result: "Daily",
-                    unit: "",
-                  ),
-                ],
-              ),
-            ),
+//     return BlocBuilder<DoseCalculatorBloc, DoseCalculatorState>(
+//         builder: (context, state) {
+//       final result = (state as DoseCalculatorStateLoaded).result;
 
-            //Input Row For Dosage Data
-            CustomInputRow(
-              lookup: () {},
-              title: "Dosage: ",
-              options: ["mg/kg", "g/kg", "mg/lb", "g/lb"],
-              onChanged: (data) {
-                this.input.dosage.copyWith(
-                  unit: data.getUnit,
-                  value: data.getValue
-                );
-              },
-            ),
-            CustomInputRow(
-              title: "Frequency: ",
-              options: ["times/day"],
-              onChanged: (value) {},
-            ),
-            CustomInputRow(
-              lookup: () {},
-              title: "Patient's Weight: ",
-              options: ["mg/L", "DDD"],
-              onChanged: (value) {},
-            ),
-            RaisedButton(
-              color: Theme.of(context).buttonColor,
-              child: Text("Calculate"),
-              onPressed: () {
-                BlocProvider.of<DoseCalculatorBloc>(context)
-                    .add(DoseCalculatorDataAdded(
-                  data: this.input,
-                ));
-              },
-            )
-          ],
-        ),
-      );
-    });
-  }
-}
+//       return Container(
+//         padding: EdgeInsets.all(10.0),
+//         child: ListView(
+//           children: <Widget>[
+//             //Calculator Display
+//             Container(
+//               padding: EdgeInsets.all(10.0),
+//               alignment: Alignment.center,
+//               decoration: BoxDecoration(
+//                 color: Colors.white,
+//                 border: Border.all(color: Colors.grey, width: 2.0),
+//               ),
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: <Widget>[
+//                   ResultView(
+//                     result: result.amount.value.toString(),
+//                     unit: result.amount.unit.toString(),
+//                   ),
+//                   Text(
+//                     "X",
+//                     style: Theme.of(context).primaryTextTheme.headline4,
+//                   ),
+//                   ResultView(
+//                     result: result.frequency.value.toString(),
+//                     unit: result.frequency.unit.toString(),
+//                   ),
+//                   ResultView(
+//                     result: "Daily",
+//                     unit: "",
+//                   ),
+//                 ],
+//               ),
+//             ),
+
+//             //Input Row For Dosage Data
+//             CustomInputRow(
+//               lookup: () {},
+//               title: "Dosage: ",
+//               options: ["mg/kg", "g/kg", "mg/lb", "g/lb"],
+//               onChanged: (value) {
+//                 this.input.dosage.copyWith(
+//                   unit: value.getUnit,
+//                   value: value.getValue
+//                 );
+//               },
+//             ),
+//             CustomInputRow(
+//               title: "Frequency: ",
+//               options: ["times/day"],
+//               onChanged: (value) {
+//                 this.input.frequency.copyWith(
+//                   unit: value.getUnit,
+//                   value: value.getValue
+//                 );
+//               },
+//             ),
+//             CustomInputRow(
+//               lookup: () {},
+//               title: "Patient's Weight: ",
+//               options: ["mg/L", "DDD"],
+//               onChanged: (value) {
+//                 this.input.weight.copyWith(
+//                   unit: value.getUnit,
+//                   value: value.getValue
+//                 );
+//               },
+//             ),
+//             RaisedButton(
+//               color: Theme.of(context).buttonColor,
+//               child: Text("Calculate"),
+//               onPressed: () {
+//                 BlocProvider.of<DoseCalculatorBloc>(context)
+//                     .add(DoseCalculatorDataAdded(
+//                   data: this.input,
+//                 ));
+//                 print(this.input.weight.getUnit);
+//               },
+//             )
+//           ],
+//         ),
+//       );
+//     });
+//   }
+// }

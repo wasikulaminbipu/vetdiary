@@ -1,22 +1,25 @@
 import 'dart:core';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:vetdiary/model/data_builder.dart';
 
-class AnimalHusbendry extends Equatable{
+class AnimalHusbendry extends Equatable {
   final int id;
   final String animal;
   final List<DataBuilder> data;
 
-  AnimalHusbendry(this.id, this.data, this.animal);
+  AnimalHusbendry(
+      {@required this.id, @required this.animal, @required this.data});
 
-  @override
-  String toString() {
-    return "id: $id , animal: $animal , data: $data";
+  AnimalHusbendry copyWith({animal, data}) {
+    return AnimalHusbendry(
+        id: this.id, animal: animal ?? this.animal, data: data ?? this.data);
   }
 
   @override
-  // TODO: implement props
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [id, animal, data];
 }
-

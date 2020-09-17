@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vetdiary/model/calculator_result.dart';
 
-class CustomInputRow extends StatefulWidget {
+class CustomInputRow extends StatelessWidget {
   final String title;
   final Function lookup;
   final List<String> options;
   final TextInputType keyboardType;
   final ValueChanged<UnitWithValue> onChanged;
+  final UnitWithValue data;
 
   const CustomInputRow({
     Key key,
@@ -15,33 +16,11 @@ class CustomInputRow extends StatefulWidget {
     this.options,
     this.keyboardType,
     @required this.onChanged,
+    @required this.data,
   }) : super(key: key);
 
   @override
-  _CustomInputRowState createState() => _CustomInputRowState();
-}
-
-class _CustomInputRowState extends State<CustomInputRow> {
-  // String dropdownItem;
-  //Crate a variable to store data locally
-  UnitWithValue data = UnitWithValue(unit: "", value: "");
-  // String dropdownValue = "";
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    if (this.widget.options != null &&  this.widget.options.isNotEmpty && this.data.getValue == "") {
-      // this.dropdownValue = this.widget.options[0];
-      // this.data.unit = this.dropdownValue; -----not used for problems
-      this.data.copyWith(unit: this.widget.options[0]);
-      this.widget.onChanged(this.data);
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    
     return Container(
       padding: EdgeInsets.all(10.0),
       child: Row(
@@ -53,9 +32,12 @@ class _CustomInputRowState extends State<CustomInputRow> {
           Flexible(
             flex: 5,
             child: FittedBox(
-              fit: BoxFit.cover,
+                fit: BoxFit.cover,
                 // width: MediaQuery.of(context).size.width * 7 / 20,
-                child: Text(this.widget.title, style: Theme.of(context).primaryTextTheme.headline4,)),
+                child: Text(
+                  this.title,
+                  style: Theme.of(context).primaryTextTheme.headline4,
+                )),
           ),
 
           //===========Value Input Row===============
@@ -66,13 +48,15 @@ class _CustomInputRowState extends State<CustomInputRow> {
             flex: 3,
             fit: FlexFit.tight,
             child: TextField(
-              keyboardType: this.widget.keyboardType,
-              onChanged: (value){
+              keyboardType: this.keyboardType,
+              onChanged: (value) {
                 //Assign the value with value portion and call for the parent onChanged Function
-                this.data.copyWith(value: value);
-                this.widget.onChanged(data);
+
+                this.onChanged(this.data.copyWith(value: value));
               },
-              decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 0.0)),
+              decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 7.0, vertical: 0.0)),
               style: Theme.of(context).primaryTextTheme.headline4,
             ),
           ),
@@ -80,49 +64,60 @@ class _CustomInputRowState extends State<CustomInputRow> {
           //=================DropDown Options=================
           //Check If Drowpdown option exists
           //Show the SizedBox on Condition for padding
-          if( this.widget.options != null ) SizedBox(width: 5.0,),
-          //Check If dropdown option exists 
+          if (this.options != null)
+            SizedBox(
+              width: 5.0,
+            ),
+          //Check If dropdown option exists
           //Show Dropdown Button
-          if (this.widget.options != null && this.widget.options.length!= 0) Flexible(
-                flex: 3,
-                fit: FlexFit.loose,
-                  // width: MediaQuery.of(context).size.width * 6 / 20,
-                  child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey)
-                      ),
-                      height: 50.0,
-                      child: DropdownButton(
-                        value: this.data.getUnit,
-                        items: List<DropdownMenuItem>.from(this.widget.options.map((String e) => DropdownMenuItem(child: Text(e), value: e,))),
-                        onChanged: (value) {
-                          //Assign the Dropdown data 
-                          //Set State and call for parent onChanged
-                          this.data.copyWith(unit: value.toString());
-                          this.setState(() {  });
-                          this.widget.onChanged(this.data);
-                        },
-                      ),
-                    ),
+          if (this.options != null && this.options.length != 0)
+            Flexible(
+              flex: 3,
+              fit: FlexFit.loose,
+              // width: MediaQuery.of(context).size.width * 6 / 20,
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
+                  height: 50.0,
+                  child: DropdownButton(
+                    value: this.data.getUnit,
+                    items: List<DropdownMenuItem>.from(
+                        this.options.map((String e) => DropdownMenuItem(
+                              child: Text(e),
+                              value: e,
+                            ))),
+                    onChanged: (value) {
+                      //Assign the Dropdown data
+                      //Set State and call for parent onChanged
+
+                      this.onChanged(
+                          this.data.copyWith(unit: value.toString()));
+                    },
                   ),
                 ),
-                if (this.widget.lookup!=null) SizedBox(width: 5.0,) ,
-          if (this.widget.lookup != null) Flexible(
-            flex: 2,
-            // width: MediaQuery.of(context).size.width * 3 / 20,
-            child: Container(
-              height: 50.0,
-              child: RaisedButton(
-                elevation: 5.0,
-                color: Theme.of(context).buttonColor,
-                child: Icon(Icons.import_export),
-                onPressed: () {},
               ),
             ),
-          ),
+          if (this.lookup != null)
+            SizedBox(
+              width: 5.0,
+            ),
+          if (this.lookup != null)
+            Flexible(
+              flex: 2,
+              // width: MediaQuery.of(context).size.width * 3 / 20,
+              child: Container(
+                height: 50.0,
+                child: RaisedButton(
+                  elevation: 5.0,
+                  color: Theme.of(context).buttonColor,
+                  child: Icon(Icons.import_export),
+                  onPressed: () {},
+                ),
+              ),
+            ),
         ],
       ),
     );

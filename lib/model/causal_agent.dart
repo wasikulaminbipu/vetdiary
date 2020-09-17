@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:equatable/equatable.dart';
 
-class CausalAgent extends Equatable{
+class CausalAgent extends Equatable {
   final int id;
   final String title;
   final String type;
@@ -14,12 +14,27 @@ class CausalAgent extends Equatable{
   CausalAgent(this.id, this.title, this.type, this.nucleus, this.hosts,
       this.characteristics, this.sensitivity);
 
-  @override
-  String toString() {
-    return "id: $id , title: $title , type: $type , hosts: $hosts , nucleus: $nucleus , host: $hosts , characteristics: $characteristics , sensitivity: $sensitivity";
+  CausalAgent copyWith(
+      {String title,
+      String type,
+      String nucleus,
+      List<String> hosts,
+      List<String> characteristics,
+      List<String> sensitivity}) {
+    return CausalAgent(
+        this.id,
+        title ?? this.title,
+        type ?? this.type,
+        nucleus ?? this.nucleus,
+        hosts ?? this.hosts,
+        characteristics ?? this.characteristics,
+        sensitivity ?? this.sensitivity);
   }
 
   @override
-  // TODO: implement props
-  List<Object> get props => [id, title, type, nucleus, hosts, characteristics, sensitivity];
+  bool get stringify => true;
+
+  @override
+  List<Object> get props =>
+      [id, title, type, nucleus, hosts, characteristics, sensitivity];
 }

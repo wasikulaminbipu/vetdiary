@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vetdiary/bloc/calculator_bloc/calculator_bloc.dart';
 import 'package:vetdiary/bloc/dose_calculator_bloc/dose_calculator_bloc.dart';
+import 'package:vetdiary/bloc/gestation_calculator/gestation_calculator_bloc.dart';
 import 'package:vetdiary/widgets/age_calculator.dart';
 import 'package:vetdiary/widgets/body_surface_area_calculator.dart';
 import 'package:vetdiary/widgets/dosage_calculator.dart';
@@ -27,6 +28,9 @@ class Calculator extends StatelessWidget {
             amount: UnitWithValue(value: "0", unit: ""),
             frequency: UnitWithValue(value: "0", unit: ""),
           ))),
+        ),
+        BlocProvider(
+          create: (context) => GestationCalculatorBloc(),
         ),
       ],
       child: DefaultTabController(
@@ -81,12 +85,16 @@ class Calculator extends StatelessWidget {
               child: TabBarView(
                 children: <Widget>[
                   //Dosage Calculator
-                  DosageCalculator(),
-                  FluidRateCalculator(),
+                  // DosageCalculator(),
+                  // FluidRateCalculator(),
+                  Container(),
+                  Container(),
                   GestatationCalculator(),
-                  TransfusionCalculator(),
+                  Container(),
+                  // TransfusionCalculator(),
                   AgeCalculator(),
-                  BodySurfaceAreaCalculator(),
+                  Container(),
+                  // BodySurfaceAreaCalculator(),
                   Container(),
                 ],
               ),

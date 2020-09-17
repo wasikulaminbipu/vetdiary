@@ -7,16 +7,10 @@ class DoseCalculatorResult extends Equatable {
 
   DoseCalculatorResult({@required this.amount, @required this.frequency});
 
-  void copyWith({UnitWithValue amount, UnitWithValue frequency}) {
-    if (!amount.isEmpty) {
-      this.amount.value = amount.value;
-      this.amount.unit = amount.unit;
-    }
-
-    if (!frequency.isEmpty) {
-      this.frequency.value = frequency.value;
-      this.frequency.unit = frequency.unit;
-    }
+  DoseCalculatorResult copyWith(
+      {UnitWithValue amount, UnitWithValue frequency}) {
+    return DoseCalculatorResult(
+        amount: amount ?? this.amount, frequency: frequency ?? this.frequency);
   }
 
   bool get isEmpty {
@@ -24,8 +18,10 @@ class DoseCalculatorResult extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object> get props => [this.amount, this.frequency];
+
+  @override
+  bool get stringify => true;
 }
 
 class DoseCalculatorData extends Equatable {
@@ -39,22 +35,12 @@ class DoseCalculatorData extends Equatable {
     this.weight,
   });
 
-  void copyWith(
+  DoseCalculatorData copyWith(
       {UnitWithValue dosage, UnitWithValue frequency, UnitWithValue weight}) {
-    if (!dosage.isEmpty) {
-      this.dosage.value = dosage.value;
-      this.dosage.unit = dosage.unit;
-    }
-
-    if (!frequency.isEmpty) {
-      this.frequency.value = frequency.value;
-      this.frequency.unit = frequency.unit;
-    }
-
-    if (!weight.isEmpty) {
-      this.weight.value = weight.value;
-      this.weight.unit = weight.unit;
-    }
+    return DoseCalculatorData(
+        dosage: dosage ?? this.dosage,
+        frequency: frequency ?? this.frequency,
+        weight: weight ?? this.weight);
   }
 
   bool get isEmpty {
@@ -62,7 +48,9 @@ class DoseCalculatorData extends Equatable {
   }
 
   @override
-  // TODO: implement props
+  bool get stringify => true;
+
+  @override
   List<Object> get props => [
         this.dosage,
         this.frequency,
@@ -71,48 +59,41 @@ class DoseCalculatorData extends Equatable {
 }
 
 class UnitWithValue extends Equatable {
-  String value = "";
-  String unit = "";
+  final String value;
+  final String unit;
 
   UnitWithValue({
     @required this.value,
     @required this.unit,
   });
 
+  UnitWithValue.initialize({this.value = "", this.unit = ""});
+
 //to show the value as double
   double get getValueAsDouble {
     double val = double.parse(this.value);
     //Check if the value is null set it to zero
-    if(val == null) val = 0.00;
+    if (val == null) val = 0.00;
     return val;
   }
 
   //Send the Unit Value
-  String get getValue{
+  String get getValue {
     //Check if the value is null and return conditional empty string
-    if(this.value == null) return "";
+    if (this.value == null) return "";
     return value;
   }
 
   //Send the Unit Value
-  String get getUnit{
+  String get getUnit {
     //Check if the unit is null and return conditional empty string
-    if(this.unit == null) return "";
+    if (this.unit == null) return "";
     return unit;
   }
 
-  @override
-  // TODO: implement props
-  List<Object> get props => [this.value, this.unit];
-
-  void copyWith({value, unit}) {
-    if (value != null) {
-      this.value = value;
-    }
-
-    if (unit != null) {
-      this.unit = unit;
-    }
+  //Get new class with common value
+  UnitWithValue copyWith({String value, String unit}) {
+    return UnitWithValue(value: value ?? this.value, unit: unit ?? this.unit);
   }
 
   bool get isEmpty {
@@ -120,9 +101,52 @@ class UnitWithValue extends Equatable {
   }
 
   @override
-  String toString() {
-    this.value == null ? this.value = "" : "";
-    this.unit == null ? this.unit = "" : "";
-    return "" + this?.value + " " + this?.unit;
+  List<Object> get props => [this.value, this.unit];
+
+  @override
+  bool get stringify => true;
+}
+
+class GestationCalculatorResult extends Equatable {
+  final Duration duration;
+  final DateTime parturition;
+
+  GestationCalculatorResult(
+      {@required this.duration, @required this.parturition});
+
+  //To Crate new class with common value
+  GestationCalculatorResult copyWith(
+      {Duration duration, DateTime parturition}) {
+    return GestationCalculatorResult(
+        duration: duration ?? this.duration,
+        parturition: parturition ?? this.parturition);
   }
+
+  @override
+  List<Object> get props => [this.duration, this.parturition];
+
+  @override
+  bool get stringify => true;
+}
+
+class GestationCalculatorData extends Equatable {
+  final UnitWithValue gestation;
+  final DateTime insemination;
+
+  GestationCalculatorData(
+      {@required this.gestation, @required this.insemination});
+
+  //Get a new Class with common data
+  GestationCalculatorData copyWith(
+      {UnitWithValue gestation, DateTime insemination}) {
+    return GestationCalculatorData(
+        gestation: gestation ?? this.gestation,
+        insemination: insemination ?? this.insemination);
+  }
+
+  @override
+  List<Object> get props => [this.gestation, this.insemination];
+
+  @override
+  bool get stringify => true;
 }
