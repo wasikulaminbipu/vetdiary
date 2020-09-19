@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vetdiary/bloc/calculator_bloc/calculator_bloc.dart';
+import 'package:vetdiary/model/causal_agent.dart';
+import 'package:vetdiary/pages/causal_agent_page.dart';
 import 'package:vetdiary/widgets/item_card.dart';
 import 'package:vetdiary/widgets/navigation_drawer.dart';
 import 'package:vetdiary/calculator.dart';
@@ -120,7 +122,10 @@ class Dashboard extends StatelessWidget {
                           ItemCard(
                             title: "Microbiology",
                             icon: Icons.bug_report,
-                            onClick: () {},
+                            onClick: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CausalAgentPage()));
+                            },
                           ),
                           ItemCard(
                             title: "Physiology",
@@ -136,7 +141,8 @@ class Dashboard extends StatelessWidget {
                             title: "Calculator",
                             icon: Icons.view_comfy,
                             onClick: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Calculator()));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Calculator()));
                             },
                           ),
                         ],
