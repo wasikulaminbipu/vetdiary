@@ -37,3 +37,16 @@ class VariableWithValue extends Equatable {
   @override
   List<Object> get props => [this.value, this.variable];
 }
+
+class TitleWithIcon extends Equatable {
+  final String title;
+  final IconData icon;
+
+  TitleWithIcon({@required this.title, @required this.icon});
+
+  @override
+  List<Object> get props => [this.title, this.icon];
+
+  @override
+  bool get stringify => true;
+}

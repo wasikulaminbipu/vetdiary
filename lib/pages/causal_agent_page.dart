@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:vetdiary/pages/add_causal_agent_page.dart';
 
 class CausalAgentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddCausalAgent()));
+        },
         child: Icon(Icons.add),
       ),
       body: CustomScrollView(
@@ -17,7 +21,7 @@ class CausalAgentPage extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               title: Text("Causal Agent"),
               centerTitle: true,
-              background: Image.asset('images/causal_agent.png'),
+              background: Image.asset('assets/images/causal_agent.png'),
             ),
           ),
           SliverList(delegate: SliverChildListDelegate(_buildList())),
