@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vetdiary/pages/add_causal_agent_page.dart';
+import 'package:vetdiary/pages/causal_agent_add/add_causal_agent_page.dart';
 
 class CausalAgentPage extends StatelessWidget {
   @override
