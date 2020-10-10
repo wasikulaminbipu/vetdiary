@@ -65,60 +65,6 @@ final ThemeData vTheme = ThemeData(
     ),
   ),
   textTheme: TextTheme(
-    display4: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 96.0,
-      fontWeight: FontWeight.w300,
-      fontStyle: FontStyle.normal,
-    ),
-    display3: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 60.0,
-      fontWeight: FontWeight.w300,
-      fontStyle: FontStyle.normal,
-    ),
-    display2: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 48.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    display1: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 34.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    headline: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 24.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    title: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 20.0,
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-    ),
-    subhead: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    body2: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 14.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    body1: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
     caption: TextStyle(
       color: Color(0x8a000000),
       fontSize: 12.0,
@@ -127,12 +73,6 @@ final ThemeData vTheme = ThemeData(
     ),
     button: TextStyle(
       color: Color(0xdd000000),
-      fontSize: 14.0,
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-    ),
-    subtitle: TextStyle(
-      color: Color(0xff000000),
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
@@ -145,61 +85,7 @@ final ThemeData vTheme = ThemeData(
     ),
   ),
   primaryTextTheme: TextTheme(
-    display4: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 96.0,
-      fontWeight: FontWeight.w300,
-      fontStyle: FontStyle.normal,
-    ),
-    display3: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 60.0,
-      fontWeight: FontWeight.w300,
-      fontStyle: FontStyle.normal,
-    ),
-    display2: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 48.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    display1: TextStyle(
-      color: Color(0x8a000000),
-      fontSize: 34.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    headline: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 24.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    title: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 20.0,
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-    ),
-    subhead: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    body2: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 14.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    body1: TextStyle(
-      color: Color(0xdd000000),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    caption: TextStyle(
+      caption: TextStyle(
       color: Color(0x8a000000),
       fontSize: 12.0,
       fontWeight: FontWeight.w400,
@@ -207,12 +93,6 @@ final ThemeData vTheme = ThemeData(
     ),
     button: TextStyle(
       color: Color(0xdd000000),
-      fontSize: 14.0,
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-    ),
-    subtitle: TextStyle(
-      color: Color(0xff000000),
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
@@ -225,60 +105,6 @@ final ThemeData vTheme = ThemeData(
     ),
   ),
   accentTextTheme: TextTheme(
-    display4: TextStyle(
-      color: Color(0xb3ffffff),
-      fontSize: 96.0,
-      fontWeight: FontWeight.w300,
-      fontStyle: FontStyle.normal,
-    ),
-    display3: TextStyle(
-      color: Color(0xb3ffffff),
-      fontSize: 60.0,
-      fontWeight: FontWeight.w300,
-      fontStyle: FontStyle.normal,
-    ),
-    display2: TextStyle(
-      color: Color(0xb3ffffff),
-      fontSize: 48.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    display1: TextStyle(
-      color: Color(0xb3ffffff),
-      fontSize: 34.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    headline: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: 24.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    title: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: 20.0,
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-    ),
-    subhead: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    body2: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: 14.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
-    body1: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: 16.0,
-      fontWeight: FontWeight.w400,
-      fontStyle: FontStyle.normal,
-    ),
     caption: TextStyle(
       color: Color(0xb3ffffff),
       fontSize: 12.0,
@@ -286,12 +112,6 @@ final ThemeData vTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
     button: TextStyle(
-      color: Color(0xffffffff),
-      fontSize: 14.0,
-      fontWeight: FontWeight.w500,
-      fontStyle: FontStyle.normal,
-    ),
-    subtitle: TextStyle(
       color: Color(0xffffffff),
       fontSize: 14.0,
       fontWeight: FontWeight.w500,
@@ -330,7 +150,7 @@ final ThemeData vTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
     errorMaxLines: null,
-    hasFloatingPlaceholder: true,
+    floatingLabelBehavior: FloatingLabelBehavior.auto,
     isDense: false,
     contentPadding:
         EdgeInsets.only(top: 24.0, bottom: 16.0, left: 12.0, right: 12.0),

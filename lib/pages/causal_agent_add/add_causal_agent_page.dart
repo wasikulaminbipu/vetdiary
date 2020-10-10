@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vetdiary/model/utility.dart';
 import 'package:vetdiary/widgets/multiple_option_button/multiple_option_button.dart';
+import 'package:vetdiary/widgets/selection_dialogue/selection_dialogue.dart';
 import 'package:vetdiary/widgets/visual_options/visual_options.dart';
 
 class AddCausalAgent extends StatelessWidget {
@@ -80,10 +81,39 @@ class AddCausalAgent extends StatelessWidget {
       ),
     );
 
+    //This is for adding host
+    final Widget _add_host = Container(
+      padding: EdgeInsets.all(5.0),
+      child: Row(
+        children: [
+          Text(
+            "Hosts",
+            style:
+                Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20.0),
+          ),
+          Spacer(),
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return SelectionDialogue(
+                        title: "Add Pathogen",
+                        option: <String>["ABCD", "CDEF", "alks", "JSHDK"],
+                      );
+                    },
+                    useSafeArea: true);
+              }),
+        ],
+      ),
+    );
+
     //add all the ui components
     data.add(_choiceList);
     data.add(_basicInputData);
     data.add(_bacterialView);
+    data.add(_add_host);
 
     return data;
   }
