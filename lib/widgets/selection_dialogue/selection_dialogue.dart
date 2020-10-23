@@ -5,8 +5,15 @@ import 'package:vetdiary/widgets/selection_dialogue/cubit/selection_dialogue_cub
 class SelectionDialogue extends StatelessWidget {
   final String title;
   final List<String> option;
+  final Function(List<String>) onSubmitted;
+  final bool multiSelect;
 
-  SelectionDialogue({@required this.title, @required this.option});
+  SelectionDialogue({
+    @required this.title,
+    @required this.option,
+    @required this.onSubmitted,
+    this.multiSelect = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +53,34 @@ class SelectionDialogue extends StatelessWidget {
                             .headline5
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          icon: Icon(Icons.select_all),
-                          onPressed: () {
-                            _bloc.selectAll();
-                          },
-                        ),
+                      //------Icon Bar For the Header Icon
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          //Icon For Selection of all
+                          this.multiSelect ?
+                          Container(
+                            alignment: Alignment.center,
+                            child: IconButton(
+                              icon: Icon(Icons.select_all),
+                              onPressed: () {
+                                _bloc.selectAll();
+                              },
+                            ),
+                          ) : Container(),
+                          //Icon for done option
+                          Container(
+                            alignment: Alignment.center,
+                            child: IconButton(
+                              icon: Icon(Icons.done),
+                              onPressed: () {
+                                //Send all the data back to the previous widget
+                                this.onSubmitted(_bloc.selected);
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ),
+                        ],
                       )
                     ],
                   ),
@@ -118,7 +145,7 @@ class SelectionDialogue extends StatelessWidget {
                                       ),
                                 ),
                                 onTap: () {
-                                  _bloc.selectOption(title);
+                                  _bloc.selectOption(title, multiSelect: this.multiSelect);
                                 },
                               ),
                             );

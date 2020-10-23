@@ -13,7 +13,9 @@ class SelectionDialogueCubit extends Cubit<SelectionDialogueState> {
     this._viewOptions = options;
   }
 
-  void selectOption(String option) {
+  get selected => this._selected;
+
+  void selectOption(String option, {bool multiSelect = false}) {
     //check the validity of the option
     if (option != null && option.length > 0) {
       //toogle selection of the option
@@ -21,8 +23,13 @@ class SelectionDialogueCubit extends Cubit<SelectionDialogueState> {
         //When the option is already selected
         this._selected.remove(option);
       } else {
-        //When option is not selected
-        this._selected.add(option);
+        //When option is not selected already
+        //----------------------------------
+        //if multiselect is false only selected will be option else add option
+        if (!multiSelect)
+          this._selected = [option];
+        else
+          this._selected.add(option);
       }
       //Emit the data to the state
       emit(SelectionDialogueStateChanged(
