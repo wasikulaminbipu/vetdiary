@@ -24,13 +24,13 @@ class OptionButton extends StatelessWidget {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 500),
         curve: Curves.bounceOut,
-        width: this.width,
+        width: this.width ,
         padding: EdgeInsets.all(5.0),
         margin: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            color: this.isSelected
+            color: !this.isSelected
                 ? Theme.of(context).primaryColor
-                : Theme.of(context).buttonColor,
+                : Theme.of(context).accentColor,
             borderRadius: BorderRadius.circular(this.radius ?? 10.0),
             boxShadow: [
               !this.isSelected

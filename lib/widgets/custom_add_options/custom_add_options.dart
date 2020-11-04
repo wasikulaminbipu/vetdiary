@@ -1,56 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vetdiary/widgets/custom_add_options/custom_add_options_model.dart';
 import 'package:vetdiary/widgets/selection_dialogue/selection_dialogue.dart';
 
 class CustomAddOptions extends StatelessWidget {
+  final List<String> options;
+  final Function(List<String>) onChanged;
+  final bool multiSelect;
+
+  const CustomAddOptions(
+      {Key key,
+      @required this.options,
+      @required this.onChanged,
+      this.multiSelect = true})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(5.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return ChangeNotifierProvider<CustomAddOptionModel>(
+      create: (context) => CustomAddOptionModel(),
+      builder: (context, child) {
+        var _state = Provider.of<CustomAddOptionModel>(context, listen: false);
+        //Container for Returning the body of the page
+        return Container(
+          padding: EdgeInsets.all(5.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Hosts",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    .copyWith(fontSize: 20.0),
-              ),
-              Spacer(),
-              IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        barrierDismissible: false,
-                        builder: (context) {
-                          return SelectionDialogue(
-                            multiSelect: true,
-                            title: "Add Pathogen",
-                            option: <String>["ABCD", "CDEF", "alks", "JSHDK"],
-                            onSubmitted: (data) {
-                              print(data);
+              Row(
+                children: [
+                  Text(
+                    "Hosts",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .copyWith(fontSize: 20.0),
+                  ),
+                  Spacer(),
+                  IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) {
+                              return SelectionDialogue(
+                                multiSelect: this.multiSelect,
+                                title: "Add Pathogen",
+                                option: this.options,
+                                selected: _state.options,
+                                onSubmitted: (data) {
+                                  _state.addMultipleOption(data);
+                                  onChanged(data);
+                                },
+                              );
                             },
-                          );
-                        },
-                        useSafeArea: true);
-                  }),
+                            useSafeArea: true);
+                      }),
+                ],
+              ),
+              Consumer<CustomAddOptionModel>(builder: (context, value, child) {
+                return Container(
+                  child: Wrap(
+                    children: value.options
+                        .map((String option) => Container(
+                              padding: EdgeInsets.all(5.0),
+                              child: CustomOption(
+                                text: option,
+                                icon: Icons.done,
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                );
+              }),
             ],
           ),
-          Container(
-            child: Wrap(
-              children: [
-                CustomOption(
-                  text: "Name",
-                  icon: Icons.done,
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

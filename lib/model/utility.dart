@@ -38,6 +38,25 @@ class VariableWithValue extends Equatable {
   List<Object> get props => [this.value, this.variable];
 }
 
+class VariableWithSelected extends Equatable {
+  final variable;
+  final bool selected;
+
+  VariableWithSelected({@required this.variable, @required this.selected});
+
+  VariableWithSelected copyWith({var variable, bool selected}) {
+    return VariableWithSelected(
+        variable: variable ?? this.variable,
+        selected: selected ?? this.selected);
+  }
+
+  @override
+  List<Object> get props => [this.variable, this.selected];
+
+  @override
+  bool get stringify => true;
+}
+
 class TitleWithIcon extends Equatable {
   final String title;
   final IconData icon;
